@@ -1,0 +1,39 @@
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content {
+    width: 50%;
+}
+
+.github-icon {
+    font-size: 95px;
+    color: #ffce00;
+}
+
+.required-field {
+    color: #EB2D2D;
+    right: 0;
+    left: unset !important;
+}
+
+.login-button {
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 55px;
+}
+
+.arrow-right {
+    font-size: 25px;
+    margin-left: 3px;
+}
+
+@media (max-width: 767px) {
+    .login-content {
+        width: 100%;
+    }
+}
