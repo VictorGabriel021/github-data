@@ -1,14 +1,21 @@
-import './App.scss';
+import './app.scss';
 import './core/assets/styles/custom.scss';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './pages/Login';
+import Routes from './Routes';
+import { UserData, UserDataContext } from './UserDataContext';
+import { useState } from 'react';
+import { getSessionData } from './core/utils/auth';
 
 const App = () => {
+  const [userData, setUserData] = useState<UserData>(getSessionData());
+
   return (
     <>
-      <Login />
-      <ToastContainer />
+      <UserDataContext.Provider value={{ userData, setUserData }}>
+        <Routes />
+        <ToastContainer />
+      </UserDataContext.Provider>
     </>
   );
 }

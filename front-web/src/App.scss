@@ -14,3 +14,12 @@ html, body, #root {
         color: #535353 !important;
     }
 }
+
+a {
+    text-decoration: none !important;
+    color: #FFF !important;
+
+    &:hover {
+        color: #FFCE00 !important;
+    }
+}

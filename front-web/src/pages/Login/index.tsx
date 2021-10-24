@@ -4,6 +4,10 @@ import { RiArrowRightLine } from 'react-icons/ri';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import { makeRequest } from '../../core/utils/request';
+import { useHistory } from 'react-router';
+import { saveSessionData } from '../../core/utils/auth';
+import { UserData, UserDataContext } from '../../UserDataContext';
+import { useContext } from 'react';
 
 type FormData = {
     username: string;
@@ -11,13 +15,20 @@ type FormData = {
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const { setUserData } = useContext(UserDataContext);
+
+    const history = useHistory();
 
     const onSubmit = (data: FormData) => {
-        makeRequest({ url: `https://github.com/${data.username}` })
-            .then(() => {
+        makeRequest({ url: `https://api.github.com/users/${data.username}` })
+            .then(response => {                
+                saveSessionData(response as UserData);
+                setUserData(response as UserData);
+
                 toast.success("Login com sucesso", {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
+                history.push('/home');
             })
             .catch(() => {
                 toast.error("Erro ao efetuar o Login", {

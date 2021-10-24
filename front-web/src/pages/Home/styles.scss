@@ -1,0 +1,71 @@
+.background-user-image {
+    background-color: #1f1f1f;
+    height: 120px;
+    padding: 20px 20px 0 10px;
+}
+
+.user-logout {
+    font-weight: 100;
+}
+
+.user-logout-icon {
+    color: #d03434;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.user-image {
+    border-radius: 50%;
+    border: solid;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-bottom: 45px;
+}
+
+.user-name {
+    text-transform: uppercase;
+}
+
+.background-user-options {
+    display: flex;
+    justify-content: space-around;
+    background-color: #5252525D;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.option {
+    font-size: 40px;
+}
+
+.user-bio {
+    display: flex;
+    margin: 50px 10px 50px 0;
+
+    h1 {
+        margin-bottom: 5px;
+    }
+}
+
+.title-icon {
+    background-color: #FFCE00;
+    margin-right: 12px;
+    height: 35px;
+    width: 10px;
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.title-align {
+    flex: 1;
+}
+
+p {
+    margin: 0;
+    font-weight: 100;
+}
+
+h1 {
+    margin: 0;
+}
