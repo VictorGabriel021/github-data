@@ -69,13 +69,7 @@ const Home = () => {
                 <section className="title-align">
                     <h1>BIO</h1>
                     <p>
-                        {userData.data?.bio}sdk dsjkfhdskjfdsfds
-                        dsfdsf
-                        dsf
-                        dsfdsfdsdf
-                        dsfdfsdsf
-                        dsdsfdsfds
-                        fdsfdsfdsfkdsjfkdsjfdkhdskjfhdskj
+                        {userData.data?.bio}
                     </p>
                 </section>
             </div>

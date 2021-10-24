@@ -1,5 +1,5 @@
 import { Router, Route, Switch } from 'react-router-dom';
-import PrivateRoute from './core/components/PrivateRoute';
+import PrivateRoute from './core/components/Routes/PrivateRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import history from 'core/utils/history';
