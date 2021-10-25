@@ -3,7 +3,7 @@ import './core/assets/styles/custom.scss';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Routes from './Routes';
-import { UserData, UserDataContext } from './UserDataContext';
+import { UserData, UserDataContext } from './Context/UserDataContext';
 import { useState } from 'react';
 import { getSessionData } from './core/utils/auth';
 

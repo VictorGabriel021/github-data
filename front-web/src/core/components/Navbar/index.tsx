@@ -20,7 +20,7 @@ const Navbar = () => (
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/follwers">
+                <NavLink to="/followers">
                     <FiUsers />
                     <h6>Seguidores</h6>
                 </NavLink>

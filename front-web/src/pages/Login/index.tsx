@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { makeRequest } from '../../core/utils/request';
 import { useHistory } from 'react-router';
 import { saveSessionData } from '../../core/utils/auth';
-import { UserData, UserDataContext } from '../../UserDataContext';
+import { UserData, UserDataContext } from '../../Context/UserDataContext';
 import { useContext } from 'react';
 
 type FormData = {
@@ -25,7 +25,7 @@ const Login = () => {
                 saveSessionData(response as UserData);
                 setUserData(response as UserData);
 
-                toast.success("Login com sucesso", {
+                toast.success("Login efetuado sucesso", {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
                 history.push('/home');

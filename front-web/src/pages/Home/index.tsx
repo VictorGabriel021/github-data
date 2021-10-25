@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { UserDataContext } from '../../UserDataContext';
+import { UserDataContext } from '../../Context/UserDataContext';
 import './styles.scss';
 import { FiLogOut } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Home = () => {
     }
 
     return (
-        <>
+        <div className="container-xxl">
             <div className="background-user-image">
                 <div className="d-flex justify-content-between">
                     <b>#{userData.data?.login}</b>
@@ -73,7 +73,7 @@ const Home = () => {
                     </p>
                 </section>
             </div>
-        </>
+        </div>
     );
 }
 

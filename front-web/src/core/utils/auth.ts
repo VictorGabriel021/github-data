@@ -1,4 +1,4 @@
-import { UserData } from "../../UserDataContext";
+import { UserData } from "../../Context/UserDataContext";
 import history from "./history";
 
 export const saveSessionData = (userData: UserData) => {    
