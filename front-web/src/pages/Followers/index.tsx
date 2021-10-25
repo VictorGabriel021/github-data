@@ -1,8 +1,37 @@
-import './styles.scss';
+import { FollowerData, FollowerDataContext } from 'Context/FollowerDataContext';
+import { UserDataContext } from 'Context/UserDataContext';
+import BannerGoBack from 'core/components/BannerGoBack';
+import FollowList from 'core/components/FollowList';
+import { makeRequest } from 'core/utils/request';
+import { useContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const Followers = () => {
+
+    const { userData } = useContext(UserDataContext);
+    const { followerData, setFollowerData } = useContext(FollowerDataContext);
+
+    useEffect(() => {
+        makeRequest({ url: `https://api.github.com/users/${userData.data?.login}/followers` })
+            .then(response => {
+                setFollowerData(response as FollowerData);
+            })
+            .catch(() => {
+                toast.error("Erro ao carregar os seguidores", {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                });
+            })
+    }, [setFollowerData, userData])
+
     return (
-    <h1>Followers</h1>
+        <div className="navbar-padding">
+            <BannerGoBack title="seguidores" qtd={userData.data?.followers} />
+            {
+                followerData.data?.map(follower => (
+                    <FollowList data={follower} key={follower.login} />
+                ))
+            }
+        </div>
     );
 }
 

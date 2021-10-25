@@ -1,0 +1,23 @@
+.follow-list-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 20px 0 0;
+    height: 100px;
+}
+
+.user-image-follow {
+    border-radius: 50%;
+    border: solid;
+    width: 70px;
+    height: 70px;
+    margin-top: -20px;
+    margin-right: 20px;
+}
+
+.user-name-follow {
+    font-weight: 600;
+}
+
+.arrow-right {
+    font-size: 20px;
+}

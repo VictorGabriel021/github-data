@@ -1,12 +1,10 @@
-import './styles.scss';
 import { useContext, useEffect } from 'react';
 import { UserDataContext } from 'Context/UserDataContext';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { makeRequest } from 'core/utils/request';
 import { RepositoryData, RepositoryDataContext } from 'Context/RepositoryDataContext';
 import { toast } from 'react-toastify';
 import RepositoryList from './List';
-import { Link } from 'react-router-dom';
+import BannerGoBack from 'core/components/BannerGoBack';
 
 const Repository = () => {
     const { userData } = useContext(UserDataContext);
@@ -25,15 +23,8 @@ const Repository = () => {
     }, [setRepositoryData, userData])
 
     return (
-        <div className="repos-container">
-            <div className="repos-background">
-                <Link to="/home">
-                    <AiOutlineArrowLeft className="icon-goback" />
-                </Link>
-                <p className="repos-title-goback">
-                    {userData.data?.public_repos} repositórios
-                </p>
-            </div>
+        <div className="navbar-padding">
+            <BannerGoBack title='repositórios' qtd={userData.data?.public_repos} />
             {
                 repositoryData.data?.map(repos => (
                     <RepositoryList data={repos} key={repos.name} />

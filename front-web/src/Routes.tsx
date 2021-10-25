@@ -7,9 +7,14 @@ import Repository from 'pages/Repository';
 import Followers from 'pages/Followers';
 import { useState } from 'react';
 import { RepositoryData, RepositoryDataContext } from 'Context/RepositoryDataContext';
+import { FollowerData, FollowerDataContext } from 'Context/FollowerDataContext';
+import { FollowingData, FollowingDataContext } from 'Context/FollowingDataContext';
+import Following from 'pages/Following';
 
 const Routes = () => {
     const [repositoryData, setRepositoryData] = useState<RepositoryData>({});
+    const [followerData, setFollowerData] = useState<FollowerData>({});
+    const [followingData, setFollowingData] = useState<FollowingData>({});
 
     return (
         <Router history={history}>
@@ -26,7 +31,14 @@ const Routes = () => {
                     </RepositoryDataContext.Provider>
                 </PrivateRoute>
                 <PrivateRoute path="/followers">
-                    <Followers />
+                    <FollowerDataContext.Provider value={{ followerData, setFollowerData }}>
+                        <Followers />
+                    </FollowerDataContext.Provider>
+                </PrivateRoute>
+                <PrivateRoute path="/following">
+                    <FollowingDataContext.Provider value={{ followingData, setFollowingData }}>
+                        <Following />
+                    </FollowingDataContext.Provider>
                 </PrivateRoute>
             </Switch>
         </Router>
