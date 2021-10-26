@@ -46,3 +46,9 @@ a {
     height: 80%;
     object-fit: scale-down;
 }
+
+@media (min-width: 1200px) {
+    .container-web {
+        width: 50%;
+    }
+}

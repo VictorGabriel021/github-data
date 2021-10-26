@@ -35,13 +35,17 @@ const Follow = () => {
                         <img src={LoaderGif} alt={LoaderGif} className="loader-gif" />
                     )
                     : (
-                        <div className="navbar-padding">
-                            <BannerGoBack title="seguindo" qtd={userData.data?.following} />
-                            {
-                                followingData.data?.map(following => (
-                                    <FollowList data={following} route='following' key={following.login} />
-                                ))
-                            }
+                        <div className="d-xl-flex justify-content-center">
+                            <div className="container-web">
+                                <div className="navbar-padding">
+                                    <BannerGoBack title="seguindo" qtd={userData.data?.following} />
+                                    {
+                                        followingData.data?.map(following => (
+                                            <FollowList data={following} route='following' key={following.login} />
+                                        ))
+                                    }
+                                </div>
+                            </div>
                         </div>
                     )
             }

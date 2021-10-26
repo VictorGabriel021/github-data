@@ -8,7 +8,7 @@ import BannerGoBack from 'core/components/BannerGoBack';
 import LoaderGif from 'core/assets/images/loader.gif';
 
 const Repository = () => {
-    const { userData } = useContext(UserDataContext);
+    const { userData, setUserData } = useContext(UserDataContext);
     const { repositoryData, setRepositoryData } = useContext(RepositoryDataContext);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -24,7 +24,7 @@ const Repository = () => {
                 })
             })
             .finally(() => setIsLoading(false));
-    }, [setRepositoryData, userData])
+    }, [setUserData, setRepositoryData, userData])
 
     return (
         <>
@@ -34,13 +34,17 @@ const Repository = () => {
                         <img src={LoaderGif} alt={LoaderGif} className="loader-gif" />
                     )
                     : (
-                        <div className="navbar-padding">
-                            <BannerGoBack title='repositórios' qtd={userData.data?.public_repos} />
-                            {
-                                repositoryData.data?.map(repos => (
-                                    <RepositoryList data={repos} key={repos.name} />
-                                ))
-                            }
+                        <div className="d-xl-flex justify-content-center">
+                            <div className="container-web">
+                                <div className="navbar-padding">
+                                    <BannerGoBack title='repositórios' qtd={userData.data?.public_repos} />
+                                    {
+                                        repositoryData.data?.map(repos => (
+                                            <RepositoryList data={repos} key={repos.name} />
+                                        ))
+                                    }
+                                </div>
+                            </div>
                         </div>
                     )
             }

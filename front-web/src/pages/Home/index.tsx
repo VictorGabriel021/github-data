@@ -58,79 +58,81 @@ const Home = () => {
                         <img src={LoaderGif} alt={LoaderGif} className="loader-gif" />
                     )
                     : (
-                        <div className="container-xxl">
-                            <div className="background-user-image">
-                                <div className="d-flex justify-content-between">
-                                    {isDetails && (
-                                        <Link to='../'>
-                                            <AiOutlineArrowLeft className="icon-goback" />
-                                        </Link>
-                                    )}
-                                    <b>#{newUserData.data?.login}</b>
-                                    <p className="user-logout">
-                                        {isDetails
-                                            ? (
-                                                <Link to="/home" onClick={handleNewUser}>
-                                                    Salvar
-                                                    <FiLogIn className="user-login-icon login-logout" />
-                                                </Link>
-                                            )
-                                            : (
-                                                <Link to="/" onClick={handleLogout}>
-                                                    Sair
-                                                    <FiLogOut className="user-logout-icon login-logout" />
-                                                </Link>
-                                            )
-                                        }
-                                    </p>
+                        <div className="d-xl-flex justify-content-center">
+                            <div className="container-web">
+                                <div className="background-user-image">
+                                    <div className="d-flex justify-content-between">
+                                        {isDetails && (
+                                            <Link to='../'>
+                                                <AiOutlineArrowLeft className="icon-goback" />
+                                            </Link>
+                                        )}
+                                        <b>#{newUserData.data?.login}</b>
+                                        <p className="user-logout">
+                                            {isDetails
+                                                ? (
+                                                    <Link to="/home" onClick={handleNewUser}>
+                                                        Salvar
+                                                        <FiLogIn className="user-login-icon login-logout" />
+                                                    </Link>
+                                                )
+                                                : (
+                                                    <Link to="/" onClick={handleLogout}>
+                                                        Sair
+                                                        <FiLogOut className="user-logout-icon login-logout" />
+                                                    </Link>
+                                                )
+                                            }
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="d-flex justify-content-center">
-                                <img src={newUserData.data?.avatar_url} alt={newUserData.data?.avatar_url}
-                                    className="user-image" />
-                            </div>
-                            <div className="d-flex">
-                                <div className="title-icon"></div>
-                                <section className="title-align">
-                                    <h1 className="user-name">
-                                        {newUserData.data?.name}
-                                    </h1>
-                                    <p>
-                                        {newUserData.data?.email}
-                                    </p>
-                                    <p>
-                                        {newUserData.data?.location}
-                                    </p>
-                                </section>
-                            </div>
-                            <div className="background-user-options">
-                                <section className="text-center">
-                                    <h1 className="option">
-                                        {newUserData.data?.followers}
-                                    </h1>
-                                    <p>Seguidores</p>
-                                </section>
-                                <section className="text-center">
-                                    <h1 className="option">
-                                        {newUserData.data?.following}
-                                    </h1>
-                                    <p>Seguindo</p>
-                                </section>
-                                <section className="text-center">
-                                    <h1 className="option">
-                                        {newUserData.data?.public_repos}
-                                    </h1>
-                                    <p>Repos</p>
-                                </section>
-                            </div>
-                            <div className="user-bio">
-                                <div className="title-icon"></div>
-                                <section className="title-align">
-                                    <h1>BIO</h1>
-                                    <p>
-                                        {newUserData.data?.bio}
-                                    </p>
-                                </section>
+                                <div className="d-flex justify-content-center">
+                                    <img src={newUserData.data?.avatar_url} alt={newUserData.data?.avatar_url}
+                                        className="user-image" />
+                                </div>
+                                <div className="d-flex">
+                                    <div className="title-icon"></div>
+                                    <section className="title-align">
+                                        <h1 className="user-name">
+                                            {newUserData.data?.name}
+                                        </h1>
+                                        <p>
+                                            {newUserData.data?.email}
+                                        </p>
+                                        <p>
+                                            {newUserData.data?.location}
+                                        </p>
+                                    </section>
+                                </div>
+                                <div className="background-user-options">
+                                    <section className="text-center">
+                                        <h1 className="option">
+                                            {newUserData.data?.followers}
+                                        </h1>
+                                        <p>Seguidores</p>
+                                    </section>
+                                    <section className="text-center">
+                                        <h1 className="option">
+                                            {newUserData.data?.following}
+                                        </h1>
+                                        <p>Seguindo</p>
+                                    </section>
+                                    <section className="text-center">
+                                        <h1 className="option">
+                                            {newUserData.data?.public_repos}
+                                        </h1>
+                                        <p>Repos</p>
+                                    </section>
+                                </div>
+                                <div className="user-bio">
+                                    <div className="title-icon"></div>
+                                    <section className="title-align">
+                                        <h1>BIO</h1>
+                                        <p>
+                                            {newUserData.data?.bio}
+                                        </p>
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     )

@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import { makeRequest } from '../../core/utils/request';
 import { useHistory } from 'react-router';
-import { saveSessionData } from '../../core/utils/auth';
+import { isAuthenticated, saveSessionData } from '../../core/utils/auth';
 import { UserData, UserDataContext } from '../../Context/UserDataContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 type FormData = {
     username: string;
@@ -16,12 +16,11 @@ type FormData = {
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const { setUserData } = useContext(UserDataContext);
-
     const history = useHistory();
 
     const onSubmit = (data: FormData) => {
         makeRequest({ url: `https://api.github.com/users/${data.username}` })
-            .then(response => {                
+            .then(response => {
                 saveSessionData(response as UserData);
                 setUserData(response as UserData);
                 history.push('/home');
@@ -32,6 +31,12 @@ const Login = () => {
                 });
             });
     }
+
+    useEffect(() => {
+        if (isAuthenticated()) {
+            history.push('/home');
+        }
+    }, [history]);
 
     return (
         <div className="container">
@@ -58,7 +63,7 @@ const Login = () => {
                     </label>
                     <div className="d-grid">
                         <button type="submit" className="btn btn-warning login-button">
-                            ENTRAR <RiArrowRightLine className="arrow-right" />
+                            ENTRAR <RiArrowRightLine className="login-arrow-right" />
                         </button>
                     </div>
                 </form>

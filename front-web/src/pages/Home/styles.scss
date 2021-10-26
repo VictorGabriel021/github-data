@@ -75,15 +75,3 @@ p {
 h1 {
     margin: 0;
 }
-
-@media (max-width: 768px) {
-    .container-xxl {
-        padding: 0;
-    }
-}
-
-@media (min-width: 769px) {
-    .container-xxl {
-        width: 50%;
-    }
-}
