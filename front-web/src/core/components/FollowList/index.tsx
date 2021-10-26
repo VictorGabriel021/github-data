@@ -1,14 +1,16 @@
 import './styles.scss';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 type Props = {
     data: {
         login: string;
         avatar_url: string;
-    }
+    },
+    route: string;
 }
 
-const FollowList = ({ data }: Props) => {
+const FollowList = ({ data, route }: Props) => {
     return (
         <>
             <div className="follow-list-container">
@@ -18,7 +20,9 @@ const FollowList = ({ data }: Props) => {
                         className="user-image-follow" />
                     <p className="user-name-follow">#{data.login}</p>
                 </section>
-                <AiOutlineArrowRight className="arrow-right" />
+                <Link to={`/${route}/details/${data.login}`}>
+                    <AiOutlineArrowRight className="arrow-right" />
+                </Link>
             </div>
             <hr />
         </>

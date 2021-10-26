@@ -20,4 +20,9 @@
 
 .arrow-right {
     font-size: 20px;
+    color: #FFF;
+
+    &:hover {
+        color: #FFCE00;
+    }
 }

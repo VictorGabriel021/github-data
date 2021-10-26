@@ -29,3 +29,13 @@ export const UserDataContext = createContext<UserDataContextType>({
     userData: {},
     setUserData: () => null
 });
+
+export type NewUserDataContextType = {
+    newUserData: UserData;
+    setNewUserData: (newUserData: UserData) => void;
+}
+
+export const NewUserDataContext = createContext<NewUserDataContextType>({
+    newUserData: {},
+    setNewUserData: () => null
+});

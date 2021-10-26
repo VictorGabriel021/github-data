@@ -1,38 +1,16 @@
-import { FollowerData, FollowerDataContext } from 'Context/FollowerDataContext';
-import { UserDataContext } from 'Context/UserDataContext';
-import BannerGoBack from 'core/components/BannerGoBack';
-import FollowList from 'core/components/FollowList';
-import { makeRequest } from 'core/utils/request';
-import { useContext, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { Route, Switch } from "react-router";
+import Follower from "./Follower";
+import FollowerDetails from "./FollowerDetails";
 
-const Followers = () => {
-
-    const { userData } = useContext(UserDataContext);
-    const { followerData, setFollowerData } = useContext(FollowerDataContext);
-
-    useEffect(() => {
-        makeRequest({ url: `https://api.github.com/users/${userData.data?.login}/followers` })
-            .then(response => {
-                setFollowerData(response as FollowerData);
-            })
-            .catch(() => {
-                toast.error("Erro ao carregar os seguidores", {
-                    position: toast.POSITION.BOTTOM_RIGHT
-                });
-            })
-    }, [setFollowerData, userData])
-
-    return (
-        <div className="navbar-padding">
-            <BannerGoBack title="seguidores" qtd={userData.data?.followers} />
-            {
-                followerData.data?.map(follower => (
-                    <FollowList data={follower} key={follower.login} />
-                ))
-            }
-        </div>
-    );
-}
+const Followers = () => (
+    <Switch>
+        <Route path="/followers" exact>
+            <Follower />
+        </Route>
+        <Route path="/followers/details/:followId">
+            <FollowerDetails />
+        </Route>
+    </Switch>
+);
 
 export default Followers

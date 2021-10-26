@@ -5,11 +5,11 @@ import Login from './pages/Login';
 import history from 'core/utils/history';
 import Repository from 'pages/Repository';
 import Followers from 'pages/Followers';
+import Following from 'pages/Following';
 import { useState } from 'react';
 import { RepositoryData, RepositoryDataContext } from 'Context/RepositoryDataContext';
 import { FollowerData, FollowerDataContext } from 'Context/FollowerDataContext';
 import { FollowingData, FollowingDataContext } from 'Context/FollowingDataContext';
-import Following from 'pages/Following';
 
 const Routes = () => {
     const [repositoryData, setRepositoryData] = useState<RepositoryData>({});

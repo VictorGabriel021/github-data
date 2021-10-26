@@ -1,65 +1,113 @@
-import { useContext } from 'react';
-import { UserDataContext } from '../../Context/UserDataContext';
+import { useContext, useEffect } from 'react';
+import { NewUserDataContext, UserData, UserDataContext } from '../../Context/UserDataContext';
 import './styles.scss';
 import { FiLogOut } from 'react-icons/fi';
+import { FiLogIn } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { logout } from 'core/utils/auth';
+import { loginNewUser, logout } from 'core/utils/auth';
+import { useParams } from 'react-router';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { makeRequest } from 'core/utils/request';
+import { toast } from 'react-toastify';
+
+type ParamsType = {
+    followId: string;
+}
 
 const Home = () => {
-    const { userData } = useContext(UserDataContext);
+    const { userData, setUserData } = useContext(UserDataContext);
+    const { newUserData, setNewUserData } = useContext(NewUserDataContext);
+    const { followId } = useParams<ParamsType>();
+    const isDetails = followId !== undefined;
 
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         event.preventDefault();
         logout();
     }
 
+    const handleNewUser = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
+        loginNewUser(newUserData);
+        setUserData(newUserData);
+    }
+
+    useEffect(() => {
+        if (isDetails) {
+            makeRequest({ url: `https://api.github.com/users/${followId}` })
+                .then(response => {
+                    setNewUserData(response as UserData);             
+                })
+                .catch(() => {
+                    toast.error("Erro ao carregar o seguidor", {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                    });
+                });
+        }
+        setNewUserData(userData);
+    }, [isDetails, setNewUserData, followId, userData]);
+    
     return (
         <div className="container-xxl">
             <div className="background-user-image">
                 <div className="d-flex justify-content-between">
-                    <b>#{userData.data?.login}</b>
-                    <p className="user-logout">
-                        <Link to="/" onClick={handleLogout}>
-                            Sair
-                            <FiLogOut className="user-logout-icon" />
+                    {isDetails && (
+                        <Link to='../'>
+                            <AiOutlineArrowLeft className="icon-goback" />
                         </Link>
+                    )}
+                    <b>#{newUserData.data?.login}</b>
+                    <p className="user-logout">
+                        {isDetails
+                            ? (
+                                <Link to="/home" onClick={handleNewUser}>
+                                    Salvar
+                                    <FiLogIn className="user-login-icon login-logout" />
+                                </Link>
+                            )
+                            : (
+                                <Link to="/" onClick={handleLogout}>
+                                    Sair
+                                    <FiLogOut className="user-logout-icon login-logout" />
+                                </Link>
+                            )
+                        }
                     </p>
                 </div>
             </div>
             <div className="d-flex justify-content-center">
-                <img src={userData.data?.avatar_url} alt={userData.data?.avatar_url}
+                <img src={newUserData.data?.avatar_url} alt={newUserData.data?.avatar_url}
                     className="user-image" />
             </div>
             <div className="d-flex">
                 <div className="title-icon"></div>
                 <section className="title-align">
                     <h1 className="user-name">
-                        {userData.data?.name}
+                        {newUserData.data?.name}
                     </h1>
                     <p>
-                        {userData.data?.email}
+                        {newUserData.data?.email}
                     </p>
                     <p>
-                        {userData.data?.location}
+                        {newUserData.data?.location}
                     </p>
                 </section>
             </div>
             <div className="background-user-options">
                 <section className="text-center">
                     <h1 className="option">
-                        {userData.data?.followers}
+                        {newUserData.data?.followers}
                     </h1>
                     <p>Seguidores</p>
                 </section>
                 <section className="text-center">
                     <h1 className="option">
-                        {userData.data?.following}
+                        {newUserData.data?.following}
                     </h1>
                     <p>Seguindo</p>
                 </section>
                 <section className="text-center">
                     <h1 className="option">
-                        {userData.data?.public_repos}
+                        {newUserData.data?.public_repos}
                     </h1>
                     <p>Repos</p>
                 </section>
@@ -69,7 +117,7 @@ const Home = () => {
                 <section className="title-align">
                     <h1>BIO</h1>
                     <p>
-                        {userData.data?.bio}
+                        {newUserData.data?.bio}
                     </p>
                 </section>
             </div>

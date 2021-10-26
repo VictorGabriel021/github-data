@@ -24,10 +24,6 @@ const Login = () => {
             .then(response => {                
                 saveSessionData(response as UserData);
                 setUserData(response as UserData);
-
-                toast.success("Login efetuado sucesso", {
-                    position: toast.POSITION.BOTTOM_RIGHT
-                });
                 history.push('/home');
             })
             .catch(() => {

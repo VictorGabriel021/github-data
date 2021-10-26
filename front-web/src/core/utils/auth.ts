@@ -22,3 +22,8 @@ export const logout = () => {
     localStorage.removeItem('authData');
     history.replace('/');
 }
+
+export const loginNewUser = (newUser: UserData) => {
+    saveSessionData(newUser);
+    history.replace('/home');
+}
