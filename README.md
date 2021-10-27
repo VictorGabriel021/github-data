@@ -7,3 +7,7 @@
 2 - Entre na pasta front-web (pelo git) e execute o comando npm install para instalar as dependências do projeto.
 
 3 - Em seguida execute o comando npm run start para executar o projeto.
+
+# Como executar o teste lógico:
+
+Abra o prompt de comando dentro da pasta que está o arquivo test-luby.js e execute o comando node test-luby.js.
