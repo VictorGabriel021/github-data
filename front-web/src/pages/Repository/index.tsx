@@ -6,15 +6,18 @@ import { toast } from 'react-toastify';
 import RepositoryList from './List';
 import BannerGoBack from 'core/components/BannerGoBack';
 import LoaderGif from 'core/assets/images/loader.gif';
+import Pagination from 'core/components/Pagination';
 
 const Repository = () => {
     const { userData, setUserData } = useContext(UserDataContext);
     const { repositoryData, setRepositoryData } = useContext(RepositoryDataContext);
     const [isLoading, setIsLoading] = useState(false);
+    const [activePage, setActivePage] = useState(1);
+    const [pageCount] = useState(Math.ceil(userData.data?.public_repos as number / 30));
 
     useEffect(() => {
         setIsLoading(true);
-        makeRequest({ url: `https://api.github.com/users/${userData.data?.login}/repos` })
+        makeRequest({ url: `https://api.github.com/users/${userData.data?.login}/repos?page=${activePage}` })
             .then(response => {
                 setRepositoryData(response as RepositoryData);
             })
@@ -24,7 +27,7 @@ const Repository = () => {
                 })
             })
             .finally(() => setIsLoading(false));
-    }, [setUserData, setRepositoryData, userData])
+    }, [setUserData, setRepositoryData, userData, activePage])
 
     return (
         <>
@@ -43,6 +46,11 @@ const Repository = () => {
                                             <RepositoryList data={repos} key={repos.name} />
                                         ))
                                     }
+                                    <Pagination
+                                        pageCount={pageCount}
+                                        activePage={activePage}
+                                        onChange={page => setActivePage(page)}
+                                    />
                                 </div>
                             </div>
                         </div>

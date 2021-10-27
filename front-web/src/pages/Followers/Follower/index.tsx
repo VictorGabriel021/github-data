@@ -6,16 +6,19 @@ import { makeRequest } from 'core/utils/request';
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import LoaderGif from 'core/assets/images/loader.gif';
+import Pagination from 'core/components/Pagination';
 
 const Follower = () => {
 
     const { userData } = useContext(UserDataContext);
     const { followerData, setFollowerData } = useContext(FollowerDataContext);
     const [isLoading, setIsLoading] = useState(false);
+    const [activePage, setActivePage] = useState(1);
+    const [pageCount] = useState(Math.ceil(userData.data?.followers as number / 30));
 
     useEffect(() => {
         setIsLoading(true);
-        makeRequest({ url: `https://api.github.com/users/${userData.data?.login}/followers` })
+        makeRequest({ url: `https://api.github.com/users/${userData.data?.login}/followers?page=${activePage}` })
             .then(response => {
                 setFollowerData(response as FollowerData);
             })
@@ -25,7 +28,7 @@ const Follower = () => {
                 })
             })
             .finally(() => setIsLoading(false));
-    }, [setFollowerData, userData])
+    }, [setFollowerData, userData, activePage])
 
     return (
         <>
@@ -44,6 +47,11 @@ const Follower = () => {
                                             <FollowList data={follower} route='followers' key={follower.login} />
                                         ))
                                     }
+                                    <Pagination
+                                        pageCount={pageCount}
+                                        activePage={activePage}
+                                        onChange={page => setActivePage(page)}
+                                    />
                                 </div>
                             </div>
                         </div>
