@@ -14,7 +14,7 @@ const Follow = () => {
     const { followingData, setFollowingData } = useContext(FollowingDataContext);
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(1);
-    const [pageCount] = useState(Math.ceil(userData.data?.following as number / 30));
+    const pageCount = Math.ceil(userData.data?.following as number / 30);
 
     useEffect(() => {
         setIsLoading(true);
