@@ -25,13 +25,14 @@ const Follow = () => {
     })
       .then((response) => {
         setFollowingData(response as FollowingData);
+        setIsLoading(false);
       })
       .catch(() => {
         toast.error("Erro ao carregar quem você está seguindo", {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-      })
-      .finally(() => setIsLoading(false));
+        setIsLoading(false);
+      });
   }, [setFollowingData, userData, activePage]);
 
   return (
@@ -43,14 +44,14 @@ const Follow = () => {
           <div className="container-web">
             <div className="navbar-padding">
               <BannerGoBack title="seguindo" qtd={userData.data?.following} />
-              {followingData.data?.map((following) => (
+              {followingData?.data?.map((following) => (
                 <FollowList
                   data={following}
                   route="following"
                   key={following.login}
                 />
               ))}
-              {followingData.data?.length && (
+              {followingData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}

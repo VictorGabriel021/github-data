@@ -27,13 +27,14 @@ const Repository = () => {
     })
       .then((response) => {
         setRepositoryData(response as RepositoryData);
+        setIsLoading(false);
       })
       .catch(() => {
         toast.error("Erro ao carregar os repositórios", {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-      })
-      .finally(() => setIsLoading(false));
+        setIsLoading(false);
+      });
   }, [setUserData, setRepositoryData, userData, activePage]);
 
   return (
@@ -48,11 +49,11 @@ const Repository = () => {
                 title="repositórios"
                 qtd={userData.data?.public_repos}
               />
-              {repositoryData.data?.map((repos) => (
+              {repositoryData?.data?.map((repos) => (
                 <RepositoryList data={repos} key={repos.name} />
               ))}
 
-              {repositoryData.data?.length && (
+              {repositoryData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}

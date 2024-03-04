@@ -22,13 +22,14 @@ const Follower = () => {
     })
       .then((response) => {
         setFollowerData(response as FollowerData);
+        setIsLoading(false);
       })
       .catch(() => {
         toast.error("Erro ao carregar os seguidores", {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-      })
-      .finally(() => setIsLoading(false));
+        setIsLoading(false);
+      });
   }, [setFollowerData, userData, activePage]);
 
   return (
@@ -40,7 +41,7 @@ const Follower = () => {
           <div className="container-web">
             <div className="navbar-padding">
               <BannerGoBack title="seguidores" qtd={userData.data?.followers} />
-              {followerData.data?.map((follower) => (
+              {followerData?.data?.map((follower) => (
                 <FollowList
                   data={follower}
                   route="followers"
@@ -48,7 +49,7 @@ const Follower = () => {
                 />
               ))}
 
-              {followerData.data?.length && (
+              {followerData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}
