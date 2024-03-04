@@ -49,13 +49,15 @@ const Follower = () => {
                 />
               ))}
 
-              {!!followerData?.data?.length && (
+              <p>opa</p>
+
+              {/* {!!followerData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}
                   onChange={(page) => setActivePage(page)}
                 />
-              )}
+              )} */}
             </div>
           </div>
         </div>
