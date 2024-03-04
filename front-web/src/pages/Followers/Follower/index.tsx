@@ -49,7 +49,7 @@ const Follower = () => {
                 />
               ))}
 
-              {followerData?.data?.length && (
+              {!!followerData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}

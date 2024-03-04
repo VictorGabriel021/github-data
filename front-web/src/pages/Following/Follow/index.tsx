@@ -51,7 +51,7 @@ const Follow = () => {
                   key={following.login}
                 />
               ))}
-              {followingData?.data?.length && (
+              {!!followingData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}

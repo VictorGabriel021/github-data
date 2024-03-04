@@ -53,7 +53,7 @@ const Repository = () => {
                 <RepositoryList data={repos} key={repos.name} />
               ))}
 
-              {repositoryData?.data?.length && (
+              {!!repositoryData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}
