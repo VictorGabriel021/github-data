@@ -51,13 +51,13 @@ const Follower = () => {
 
               <p>opa</p>
 
-              {/* {!!followerData?.data?.length && (
+              {!!followerData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
                   activePage={activePage}
                   onChange={(page) => setActivePage(page)}
                 />
-              )} */}
+              )}
             </div>
           </div>
         </div>
