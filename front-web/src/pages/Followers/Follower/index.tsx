@@ -49,8 +49,6 @@ const Follower = () => {
                 />
               ))}
 
-              <p>opa</p>
-
               {!!followerData?.data?.length && (
                 <Pagination
                   pageCount={pageCount}
